@@ -1,74 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreeKitHub - Free Online Tools</title>
 
-<title>FreeKitHub - Free Online Tools</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+      text-align: center;
+    }
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    header {
+      background: #111827;
+      color: white;
+      padding: 25px 15px;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fb;
-    color: #222;
-}
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
 
-header {
-    background: #111827;
-    color: white;
-    padding: 22px 18px;
-    text-align: center;
-}
+    header p {
+      margin: 8px 0 0;
+      color: #d1d5db;
+    }
 
-header h1 {
-    font-size: 30px;
-}
+    .hero {
+      padding: 45px 20px 25px;
+    }
 
-header p {
-    margin-top: 8px;
-    color: #d1d5db;
-}
+    .hero h2 {
+      font-size: 30px;
+      margin: 0 0 12px;
+    }
 
-.hero {
-    text-align: center;
-    padding: 45px 20px 30px;
-}
+    .hero p {
+      color: #666;
+      font-size: 17px;
+    }
 
-.hero h2 {
-    font-size: 30px;
-    margin-bottom: 12px;
-}
+    .tools {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
 
-.hero p {
-    color: #666;
-    font-size: 17px;
-}
+    .tool-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
 
-.tools {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-}
+    .tool-card h3 {
+      margin-top: 0;
+    }
 
-.tool-card {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
+    .tool-card p {
+      color: #666;
+      line-height: 1.5;
+    }
 
-.tool-card h3 {
-    margin-bottom: 10px;
-}
+    .coming {
+      margin-top: 12px;
+      color: #888;
+      font-size: 14px;
+    }
 
-.tool-card p {
-    color:
+    footer {
+      margin-top: 30px;
+      padding: 25px 15px;
+      background: #111827;
+      color: #d1d5db;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>FreeKitHub</h1>
+    <p>Free, Simple & Useful Online Tools</p>
+  </header>
+
+  <section class="hero">
+    <h2>Everything You Need, Free</h2>
+    <p>Simple online tools designed to make everyday tasks easier.</p>
+  </section>
+
+  <section class="tools">
+
+    <div class="tool-card">
+      <h3>🖼️ Image Tools</h3>
+      <p>Compress, resize and manage your images easily.</p>
+      <div class="coming">Coming Soon</div>
+    </
