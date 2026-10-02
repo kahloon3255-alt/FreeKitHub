@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Free Image Compressor - FreeKitHub</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+header {
+  background: #111827;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  margin-top: 8px;
+  color: #d1d5db;
+}
+
+.container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.box {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+input[type="file"] {
+  margin: 20px 0;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin: 15px 0;
+}
+
+button {
+  background: #111827;
+  color: white;
+  border: none;
+  padding: 13px 22px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#result {
+  margin-top: 20px;
+}
+
+a {
+  display: inline-block;
+  margin-top: 15px;
+  color: #111827;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>FreeKitHub</h1>
+  <p>Free Image Compressor</p>
+</header>
+
+<div class="container">
+
+  <div class="box">
+
+    <h2>Compress Your Image</h2>
+
+    <p>Select an image and reduce its file size easily.</p>
+
+    <input type="file" id="imageInput" accept="image/*">
+
+    <label for="quality">
+      Compression Quality: <span id="qualityValue">70</span>%
+    </label>
+
+    <input type="range" id="quality" min="10" max="100" value="70">
+
+    <button onclick="compressImage()">Compress Image</button>
+
+    <div id="result"></div>
+
+  </div>
+
+</div>
+
+<script>
+
+const qualitySlider = document.getElementById("quality");
+const qualityValue = document.getElementById("qualityValue");
+
+qualitySlider.addEventListener("input", function() {
+  qualityValue.textContent = this.value;
+});
+
+function compressImage() {
+
+  const input = document.getElementById("imageInput");
+  const result = document.getElementById("result");
+
+  if (!input.files || !input.files[0]) {
+    result.innerHTML = "<p>Please select an image first.</p>";
+    return;
+  }
+
+  const file = input.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+
+    const img = new Image();
+
+    img.onload = function() {
+
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      ctx.drawImage(img, 0, 0);
+
+      const quality = Number(qualitySlider.value) / 100;
+
+      canvas.toBlob(function(blob) {
+
+        const url = URL.createObjectURL(blob);
+
+        const originalSize = (file.size / 1024).toFixed(1);
+        const newSize = (blob.size / 1024).toFixed(1);
+
+        result.innerHTML = `
+          <p>Original Size: ${originalSize} KB</p>
+          <p>Compressed Size: ${newSize} KB</p>
+          <a href="${url}" download="compressed-image.jpg">
+            <button>Download Compressed Image</button>
+          </a>
+        `;
+
+      }, "image/jpeg", quality);
+
+    };
+
+    img.src = event.target.result;
+
+  };
+
+  reader.readAsDataURL(file);
+}
+
+</script>
+
+</body>
+</html>
